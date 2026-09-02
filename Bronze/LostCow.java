@@ -24,7 +24,7 @@ public class LostCow {
         int dist = 0;
 
         while(!reached){
-            x += toAdd;
+            x += dist;
             dist += dist + Math.abs(toAdd);
             reached = (forth) ? x >= y : y >= x ;
             toAdd *= -2;
