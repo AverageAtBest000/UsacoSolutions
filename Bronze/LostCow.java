@@ -10,7 +10,7 @@ public class LostCow {
     public static void main(String[] args) throws IOException {
         
         BufferedReader in = new BufferedReader(new FileReader("lostcow.in"));
-        PrintWriter out = new PrintWriter("lostcow.in");
+        PrintWriter out = new PrintWriter("lostcow.out");
 
 
         StringTokenizer s = new StringTokenizer(in.readLine());
@@ -22,12 +22,10 @@ public class LostCow {
         
         int toAdd = 1;
         int dist = 0;
-        
+
         while(!reached){
-
-
             x += toAdd;
-            dist += Math.abs(toAdd);
+            dist += dist + Math.abs(toAdd);
             reached = (forth) ? x >= y : y >= x ;
             toAdd *= -2;
 
@@ -44,6 +42,23 @@ public class LostCow {
 
         out.close();
         in.close();
+
+
+        // BufferedReader in = new BufferedReader(new FileReader("lostcow.in"));
+        // PrintWriter out = new PrintWriter("lostcow.in");
+
+
+        // StringTokenizer s = new StringTokenizer(in.readLine());
+        // int x = Integer.parseInt(s.nextToken());
+        // int y = Integer.parseInt(s.nextToken());
+
+        // int turns = (int) Math.ceil( Math.log( Math.abs(y) )/Math.log(2) );
+
+        // int count = 0;
+        // for(int i = 0; i <= turns ; i++)
+        // {
+        //     count += count + Math.pow(2, i)
+        // }
 
     }
 }
