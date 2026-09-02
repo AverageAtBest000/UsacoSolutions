@@ -21,11 +21,13 @@ public class LostCow {
         boolean forth = y > x;
         
         int toAdd = 1;
+        int dist = 0;
         
         while(!reached){
 
 
             x += toAdd;
+            dist += Math.abs(toAdd);
             reached = (forth) ? x >= y : y >= x ;
             toAdd *= -2;
 
@@ -33,12 +35,15 @@ public class LostCow {
 
 
         if(forth)
-            x -= ( x - y );
+            dist -= ( Math.abs(x - y) );
         else
-            x += ()
+            dist += (Math.abs(x-y));
         
+        out.print(dist);
 
 
+        out.close();
+        in.close();
 
     }
 }
