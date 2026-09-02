@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
-
 /**
  * LostCow
  */
@@ -12,53 +11,43 @@ public class LostCow {
         BufferedReader in = new BufferedReader(new FileReader("lostcow.in"));
         PrintWriter out = new PrintWriter("lostcow.out");
 
-
         StringTokenizer s = new StringTokenizer(in.readLine());
         int x = Integer.parseInt(s.nextToken());
         int y = Integer.parseInt(s.nextToken());
 
-        boolean reached = false;
-        boolean forth = y > x;
-        
-        int toAdd = 1;
-        int dist = 0;
 
-        while(!reached){
-            x += dist;
-            dist += dist + Math.abs(toAdd);
-            reached = (forth) ? x >= y : y >= x ;
-            toAdd *= -2;
 
+        int diff = Math.abs(y-x);
+        int turns = (int) Math.ceil(Math.log(diff) / Math.log(2));
+
+        if (y > x && turns % 2 != 0) {
+            turns++;
+        } else if (y < x && turns % 2 == 0) {
+            turns++;
         }
 
+        int count = 1;
+        int toAdd = 3;
+        int doubler = (int)Math.pow(2,turns);
+        doubler = (turns % 2 ==  0)? doubler : -doubler;
 
-        if(forth)
-            dist -= ( Math.abs(x - y) );
-        else
-            dist += (Math.abs(x-y));
-        
-        out.print(dist);
+        for(int i = 0; i < turns ; i++)
+        {
+            count += toAdd;
+            toAdd *= 2;
+        }
 
+        int pos = x + doubler;
+
+
+        count -= Math.abs(pos - y);
+
+        out.print(count);
 
         out.close();
         in.close();
 
 
-        // BufferedReader in = new BufferedReader(new FileReader("lostcow.in"));
-        // PrintWriter out = new PrintWriter("lostcow.in");
-
-
-        // StringTokenizer s = new StringTokenizer(in.readLine());
-        // int x = Integer.parseInt(s.nextToken());
-        // int y = Integer.parseInt(s.nextToken());
-
-        // int turns = (int) Math.ceil( Math.log( Math.abs(y) )/Math.log(2) );
-
-        // int count = 0;
-        // for(int i = 0; i <= turns ; i++)
-        // {
-        //     count += count + Math.pow(2, i)
-        // }
 
     }
 }
